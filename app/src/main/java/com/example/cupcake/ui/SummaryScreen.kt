@@ -48,7 +48,8 @@ import com.example.cupcake.ui.theme.CupcakeTheme
 @Composable
 fun OrderSummaryScreen(
     orderUiState: OrderUiState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onSendButtonClicked: (String, String) -> Unit
 ) {
     val resources = LocalContext.current.resources
 
@@ -125,6 +126,8 @@ fun OrderSummaryPreview() {
         OrderSummaryScreen(
             orderUiState = OrderUiState(0, "Test", "Test", "$300.00"),
             modifier = Modifier.fillMaxHeight()
-        )
+        ) { subject: kotlin.String, summary: kotlin.String ->
+            com.example.cupcake.shareOrder(context, subject = subject, summary = summary)
+        }
     }
 }
